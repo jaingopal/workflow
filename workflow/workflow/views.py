@@ -24,19 +24,17 @@ def registerpage(request):
             else : 
                 return render(request,"register.html",{"error":"Invalid UserName or Password or Name"})
     return render(request,"register.html")
-        
-    
+
+
 
 
 def loginpage(request):
     if request.method=="POST":
         userid = request.POST.get("userid")
-        print("user is ",userid,"$")
         password = request.POST.get("password")
         try : 
             user = User.objects.get(userid=userid)
-            print ("user is found")
-            
+            print ("password is ",password)
             if (user.check_password(password)):
                 request.session["user"] = user.userid
                 return HttpResponse("Test for login")

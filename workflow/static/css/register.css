@@ -1,5 +1,5 @@
 /* Title */
-.login-portal {
+.register-portal {
     font-size: 4rem;
     text-align: center;
     margin-top: 40px;
@@ -11,8 +11,8 @@
     color: #e6e6e6;
 }
 
-/* Login Box */
-.login {
+/* Register Box */
+.register {
     width: fit-content;
     margin: 100px auto;
     padding: 30px;
@@ -24,7 +24,7 @@
 }
 
 /* Make form vertical */
-.login form {
+.register form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,6 +32,7 @@
 }
 
 /* Input Fields */
+.name,
 .userid,
 .password {
     width: 25rem;
@@ -52,20 +53,22 @@
 }
 
 /* Placeholder Styling */
+.name::placeholder,
 .userid::placeholder,
-.password::placeholder {
+.password::placeholder{
     color: #aaa;
 }
 
 /* Focus Glow */
+.name:focus,
 .userid:focus,
 .password:focus {
     border-color: #44B78B;
     box-shadow: 0 0 6px #44B78B;
 }
 
-/* Login Button */
-.login-button {
+/* Register Button  */
+.register-button {
     width: 25rem;
     height: 3rem;
 
@@ -83,10 +86,11 @@
 }
 
 /* Hover Effect */
-.login-button:hover {
+.register-button:hover {
     background-color: #5fd6a6;
 }
 
+/* Error Box */
 .error {
     color: #ff4d4d;
     background-color: #1a0000;

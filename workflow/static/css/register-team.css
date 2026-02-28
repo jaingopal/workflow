@@ -1,5 +1,5 @@
 /* Title */
-.login-portal {
+.register-portal {
     font-size: 4rem;
     text-align: center;
     margin-top: 40px;
@@ -11,8 +11,8 @@
     color: #e6e6e6;
 }
 
-/* Login Box */
-.login {
+/* Box */
+.register {
     width: fit-content;
     margin: 100px auto;
     padding: 30px;
@@ -23,17 +23,19 @@
     background-color: #0d0d0d;
 }
 
-/* Make form vertical */
-.login form {
+/* Form Layout */
+.register form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-/* Input Fields */
+/* Inputs */
 .userid,
-.password {
+.password,
+.count,
+.teamid {
     width: 25rem;
     height: 3rem;
 
@@ -51,20 +53,24 @@
     transition: 0.2s ease;
 }
 
-/* Placeholder Styling */
+/* Placeholder */
 .userid::placeholder,
-.password::placeholder {
+.password::placeholder,
+.count::placeholder,
+.teamid::placeholder {
     color: #aaa;
 }
 
 /* Focus Glow */
 .userid:focus,
-.password:focus {
+.password:focus,
+.count:focus,
+.teamid:focus {
     border-color: #44B78B;
     box-shadow: 0 0 6px #44B78B;
 }
 
-/* Login Button */
+/* Button */
 .login-button {
     width: 25rem;
     height: 3rem;
@@ -82,11 +88,11 @@
     transition: 0.2s ease;
 }
 
-/* Hover Effect */
 .login-button:hover {
     background-color: #5fd6a6;
 }
 
+/* Error */
 .error {
     color: #ff4d4d;
     background-color: #1a0000;

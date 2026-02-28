@@ -1,25 +1,25 @@
 {% extends "layout.html" %}
 {% load static %}
-
 {% block title %}
-    Login Page
+    Register Team
 {% endblock %}
 
 {% block styling %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register-team.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1 class = "login-portal">Login Portal</h1>
-    <div class = "login">
+    <h1 class = "register-portal">Register Team Portal</h1>
+    <div class="register">
         {% if error %}
-            <h2 class ="error">{{error}}</h2>
+            <h2 class = "error">{{error}}</h2>
         {% endif %}
         <form method= "POST">
             {% csrf_token %}
             <input type="text" name = "userid" class = "userid" placeholder="Enter User ID">
             <input type="password" name="password" class = "password" placeholder="Enter password">
-    
+            <input type = "number" name = "count" class = "count" placeholder = "Enter the number of members of team">
+            <input type="text" name = "teamid" class = "teamid" placeholder = "Enter Team ID">
             <button type = "submit" class= "login-button">Login</button>
         </form>
     </div>

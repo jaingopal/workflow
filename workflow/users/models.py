@@ -18,7 +18,7 @@ class User(models.Model):
         return check_password(raw_password,self.password)
     
     @classmethod
-    def is_valid_user (value):
+    def is_valid_user (cls,value):
         id = User._meta.get_field("userid")
         passw = User._meta.get_field("password")
         name_t = User._meta.get_field("name")

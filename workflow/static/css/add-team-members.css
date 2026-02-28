@@ -1,39 +1,34 @@
-/* Title */
-.login-portal {
-    font-size: 4rem;
+/* Leader Heading */
+.leader {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 10px;
-
-    letter-spacing: 2px;
-    font-weight: 600;
-
-    color: #e6e6e6;
 }
 
-/* Login Box */
-.login {
+.leader h1 {
+    font-size: 2.5rem;
+    color: #e6e6e6;
+    letter-spacing: 1px;
+}
+
+/* Form Container */
+form {
     width: fit-content;
-    margin: 100px auto;
+    margin: 60px auto;
     padding: 30px;
 
     border: 2px solid white;
     border-radius: 12px;
 
     background-color: #0d0d0d;
-}
 
-/* Make form vertical */
-.login form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-/* Input Fields */
-.userid,
-.password {
+/* Member Inputs */
+form input {
     width: 25rem;
     height: 3rem;
 
@@ -51,21 +46,19 @@
     transition: 0.2s ease;
 }
 
-/* Placeholder Styling */
-.userid::placeholder,
-.password::placeholder {
+/* Placeholder */
+form input::placeholder {
     color: #aaa;
 }
 
 /* Focus Glow */
-.userid:focus,
-.password:focus {
+form input:focus {
     border-color: #44B78B;
     box-shadow: 0 0 6px #44B78B;
 }
 
-/* Login Button */
-.login-button {
+/* Submit Button */
+.Submit {
     width: 25rem;
     height: 3rem;
 
@@ -82,17 +75,17 @@
     transition: 0.2s ease;
 }
 
-/* Hover Effect */
-.login-button:hover {
+.Submit:hover {
     background-color: #5fd6a6;
 }
 
+/* Error */
 .error {
     color: #ff4d4d;
     background-color: #1a0000;
 
     padding: 10px 15px;
-    margin-bottom: 15px;
+    margin: 20px auto;
 
     border: 1px solid #ff4d4d;
     border-radius: 6px;

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Add Team Members
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static 'css/add-team-members.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="leader">
+        <h1>Leader UserID : {{leader}}</h1>
+    </div>
+
+    {% if error %}
+        <h2 class= "error">{{error}}</h2>
+    {% endif%}
+
+    <form method= "POST">
+        {% csrf_token %}
+        {% for i in count %}
+            <input type="text" name = "member{{i}}" placeholder = "Enter Username for member {{i}}">
+        {% endfor %}
+        <button class= "Submit" type = "submit">Register</button>
+    </form>
+{% endblock %}

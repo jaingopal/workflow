@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class User(models.Model):
@@ -15,3 +16,18 @@ class User(models.Model):
         
     def check_password(self,raw_password):
         return check_password(raw_password,self.password)
+    
+    @classmethod
+    def is_valid_user (value):
+        id = User._meta.get_field("userid")
+        passw = User._meta.get_field("password")
+        name_t = User._meta.get_field("name")
+        
+        try : 
+            id.clean(value["userid"],None)
+            passw.clean(value["password"],None)
+            name_t.clean(value["name"],None)
+            return True 
+        except ValidationError:
+            return False
+        

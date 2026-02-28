@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{% block content %}
+    <h1>Login Portal</h1>
+    <h2>{{error}}</h2>
+    <form method= "POST">
+        {% csrf_token %}
+        <input type="text" name = "userid">
+        <input type="text" name="password">
+
+        <button>Login</button>
+    </form>
+{% endblock %}

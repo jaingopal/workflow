@@ -1,17 +1,24 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}
     Login Page
 {% endblock %}
 
-{% block content %}
-    <h1>Login Portal</h1>
-    <h2>{{error}}</h2>
-    <form method= "POST">
-        {% csrf_token %}
-        <input type="text" name = "userid">
-        <input type="text" name="password">
+{% block styling %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
 
-        <button>Login</button>
-    </form>
+{% block content %}
+    <h1 class = "login-portal">Login Portal</h1>
+    <div class = "login">
+        <h2 class ="error">{{error}}</h2>
+        <form method= "POST">
+            {% csrf_token %}
+            <input type="text" name = "userid" class = "userid" placeholder="Enter User ID">
+            <input type="password" name="password" class = "password" placeholder="Enter password">
+    
+            <button type = "submit" class= "login-button">Login</button>
+        </form>
+    </div>
 {% endblock %}

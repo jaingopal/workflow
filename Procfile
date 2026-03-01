@@ -1,1 +1,1 @@
-web: gunicorn workflow.wsgi
+web: gunicorn workflow.wsgi:application --chdir workflow

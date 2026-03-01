@@ -32,8 +32,7 @@
 }
 
 /* Inputs */
-.userid,
-.password,
+.name,
 .count,
 .teamid {
     width: 25rem;
@@ -54,16 +53,14 @@
 }
 
 /* Placeholder */
-.userid::placeholder,
-.password::placeholder,
+.name::placeholder,
 .count::placeholder,
 .teamid::placeholder {
     color: #aaa;
 }
 
 /* Focus Glow */
-.userid:focus,
-.password:focus,
+.name:focus,
 .count:focus,
 .teamid:focus {
     border-color: #44B78B;

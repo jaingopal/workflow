@@ -10,17 +10,24 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class = "login-portal">Login Portal</h1>
-    <div class = "login">
+    <h1 class="login-portal">Login Portal</h1>
+
+    <div class="login">
         {% if error %}
-            <h2 class ="error">{{error}}</h2>
+            <h2 class="error">{{error}}</h2>
         {% endif %}
-        <form method= "POST">
+
+        <form method="POST">
             {% csrf_token %}
-            <input type="text" name = "userid" class = "userid" placeholder="Enter User ID">
-            <input type="password" name="password" class = "password" placeholder="Enter password">
-    
-            <button type = "submit" class= "login-button">Login</button>
+            <input type="text" name="userid" class="userid" placeholder="Enter User ID">
+            <input type="password" name="password" class="password" placeholder="Enter password">
+
+            <button type="submit" class="auth-button login-button">Login</button>
         </form>
+
+        <a href="/register" class="auth-button register-button">Register</a>
+        {% comment %} <a href="/register">
+            <button class="auth-button register-button">Register</button>
+        </a> {% endcomment %}
     </div>
 {% endblock %}

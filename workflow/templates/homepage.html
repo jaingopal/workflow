@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    TeamFlow
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+{% endblock %}
+
+{% block content %}
+    {% if userid %}
+        <h1>TeamFlow</h1>
+        <h3>Manage your teams. Track your work.</h3>
+
+        <hr>
+
+        <h2>Welcome back, User</h2>
+        <p><strong>User ID:</strong> {{userid}}</p>
+
+        <h3>Your Teams</h3>
+
+        <div>
+            
+            {% for team in teams %}
+            <form method = "POST">
+                {% csrf_token %}
+                <button type = "submit" name = "team_id" value = {{team.team_id}} class = "team_name" >{{team.team_name}}</button>
+            </form>    
+            {% endfor %}
+        </div>
+
+        <hr>
+
+        <a href = '/team/register'>
+            <button>Create New Team</button>
+        </a>
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button type = "submit">Logout</button>
+        </form>
+
+    {% else %}
+        <h1>TeamFlow</h1>
+        <h3>Manage your teams. Track your work.</h3>
+
+        <hr>
+
+        <h2>You are currently logged out</h2>
+
+        <div>
+            <a href = "/login">
+                <button>Login</button>
+            </a>
+            <a href="/register">
+                <button>Register</button>
+            </a>
+        </div>
+
+    {% endif %}
+{% endblock %}

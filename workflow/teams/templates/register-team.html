@@ -16,11 +16,10 @@
         {% endif %}
         <form method= "POST">
             {% csrf_token %}
-            <input type="text" name = "userid" class = "userid" placeholder="Enter User ID">
-            <input type="password" name="password" class = "password" placeholder="Enter password">
+            <input type="text" name = "name" class = "name" placeholder= "Enter Name of your Team">
             <input type = "number" name = "count" class = "count" placeholder = "Enter the number of members of team">
             <input type="text" name = "teamid" class = "teamid" placeholder = "Enter Team ID">
-            <button type = "submit" class= "login-button">Login</button>
+            <button type = "submit" class= "login-button">Register</button>
         </form>
     </div>
 {% endblock %}

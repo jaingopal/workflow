@@ -3,27 +3,25 @@
     font-size: 4rem;
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 
     letter-spacing: 2px;
     font-weight: 600;
-
     color: #e6e6e6;
 }
 
 /* Login Box */
 .login {
     width: fit-content;
-    margin: 100px auto;
+    margin: 70px auto;
     padding: 30px;
 
     border: 2px solid white;
     border-radius: 12px;
-
     background-color: #0d0d0d;
 }
 
-/* Make form vertical */
+/* Vertical Form */
 .login form {
     display: flex;
     flex-direction: column;
@@ -31,7 +29,7 @@
     gap: 15px;
 }
 
-/* Input Fields */
+/* Inputs */
 .userid,
 .password {
     width: 25rem;
@@ -44,35 +42,35 @@
 
     background-color: #111;
     color: white;
-
     font-size: 1rem;
 
     outline: none;
     transition: 0.2s ease;
 }
 
-/* Placeholder Styling */
 .userid::placeholder,
 .password::placeholder {
     color: #aaa;
 }
 
-/* Focus Glow */
 .userid:focus,
 .password:focus {
     border-color: #44B78B;
     box-shadow: 0 0 6px #44B78B;
 }
 
-/* Login Button */
-.login-button {
+/* Common Auth Button */
+.auth-button {
     width: 25rem;
     height: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: #44B78B;
     color: black;
 
-    border: none;
     border-radius: 8px;
 
     font-size: 1.2rem;
@@ -80,13 +78,21 @@
 
     cursor: pointer;
     transition: 0.2s ease;
+
+    text-decoration: none; /* removes underline */
 }
 
-/* Hover Effect */
-.login-button:hover {
+/* Hover */
+.auth-button:hover {
     background-color: #5fd6a6;
 }
 
+/* Register button below */
+.register-button {
+    margin-top: 5px;
+}
+
+/* Error */
 .error {
     color: #ff4d4d;
     background-color: #1a0000;

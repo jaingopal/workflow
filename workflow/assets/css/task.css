@@ -1,0 +1,251 @@
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+/* Buttons (Back + Logout) */
+.back-button,
+.logout-button {
+    width: 8rem;
+    height: 2.5rem;
+
+    background-color: #111;
+    color: white;
+
+    border: 2px solid #888;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.back-button:hover,
+.logout-button:hover {
+    border-color: #44B78B;
+    box-shadow: 0 0 6px #44B78B;
+}
+
+
+/* Container */
+.task-container {
+    width: 38rem;
+    margin: 60px auto;
+    padding: 35px;
+
+    border: 2px solid #444;
+    border-radius: 16px;
+
+    background-color: #0d0d0d;
+}
+
+/* Title */
+.task-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Description */
+.task-desc {
+    color: #aaa;
+    margin-bottom: 25px;
+}
+
+/* Section */
+.task-section {
+    margin-bottom: 28px;
+}
+
+/* Labels */
+.task-section label {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+/* Tags */
+.tag {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+/* Importance */
+.importance.LOW {
+    background-color: #2e7d32;
+}
+
+.importance.MEDIUM {
+    background-color: #f9a825;
+    color: black;
+}
+
+.importance.HIGH {
+    background-color: #c62828;
+}
+
+/* Status */
+.status.TODO {
+    background-color: #555;
+}
+
+.status.IN_PROGRESS {
+    background-color: #1976d2;
+}
+
+.status.DONE {
+    background-color: #388e3c;
+}
+
+/* Deadline */
+.deadline {
+    background-color: #333;
+}
+
+/* Assigned */
+.assigned-user {
+    display: block;
+    margin-bottom: 10px;
+    color: #e6e6e6;
+}
+
+.not-assigned-user {
+    display: block;
+    margin-bottom: 10px;
+    color: #888;
+    font-style: italic;
+}
+
+/* Inputs */
+.edit-input {
+    margin-top: 6px;
+    display: block;
+    padding: 6px 10px;
+    background: #111;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 6px;
+    outline: none;
+    width: 60%;
+}
+
+.edit-input:focus {
+    border-color: #44B78B;
+    box-shadow: 0 0 6px #44B78B;
+}
+
+/* Update Buttons */
+.edit-btn {
+    margin-top: 6px;
+    padding: 6px 14px;
+
+    background-color: #44B78B;
+    color: black;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-btn:hover {
+    background-color: #5fd6a6;
+}
+
+/* Member Section */
+.member-actions {
+    margin-top: 10px;
+}
+
+/* Member Forms */
+.member-actions form {
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.assign,
+.change,
+.remove-member {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 5px;
+    transition: 0.2s ease;
+}
+
+/* Assign */
+.assign {
+    background-color: #1976d2;
+}
+
+.assign:hover {
+    background-color: #42a5f5;
+}
+
+/* Change */
+.change {
+    background-color: #f9a825;
+    color: black;
+}
+
+.change:hover {
+    background-color: #ffd54f;
+}
+
+/* Remove */
+.remove-member {
+    background-color: #c62828;
+}
+
+.remove-member:hover {
+    background-color: #e53935;
+}
+
+/* Error Box */
+.error-box {
+    margin-top: 8px;
+    padding: 8px 12px;
+
+    background-color: #1a0000;
+    color: #ff4d4d;
+
+    border: 1px solid #ff4d4d;
+    border-radius: 6px;
+
+    font-size: 0.85rem;
+}
+
+/* Delete Button */
+.delete {
+    margin-top: 15px;
+    padding: 8px 16px;
+
+    background-color: #8b0000;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.delete:hover {
+    background-color: #c62828;
+    box-shadow: 0 0 6px #c62828;
+}
+
+form .delete {
+    display: block;
+    margin: 20px auto 0 auto;
+}

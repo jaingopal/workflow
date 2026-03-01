@@ -1,0 +1,107 @@
+/* Title */
+.register-portal {
+    font-size: 4rem;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+
+    letter-spacing: 2px;
+    font-weight: 600;
+
+    color: #e6e6e6;
+}
+
+/* Box */
+.register {
+    width: fit-content;
+    margin: 100px auto;
+    padding: 30px;
+
+    border: 2px solid white;
+    border-radius: 12px;
+
+    background-color: #0d0d0d;
+}
+
+/* Form Layout */
+.register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Inputs */
+.name,
+.count,
+.teamid {
+    width: 25rem;
+    height: 3rem;
+
+    padding: 0 12px;
+
+    border: 2px solid #888;
+    border-radius: 8px;
+
+    background-color: #111;
+    color: white;
+
+    font-size: 1rem;
+
+    outline: none;
+    transition: 0.2s ease;
+}
+
+/* Placeholder */
+.name::placeholder,
+.count::placeholder,
+.teamid::placeholder {
+    color: #aaa;
+}
+
+/* Focus Glow */
+.name:focus,
+.count:focus,
+.teamid:focus {
+    border-color: #44B78B;
+    box-shadow: 0 0 6px #44B78B;
+}
+
+/* Button */
+.login-button {
+    width: 25rem;
+    height: 3rem;
+
+    background-color: #44B78B;
+    color: black;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.login-button:hover {
+    background-color: #5fd6a6;
+}
+
+/* Error */
+.error {
+    color: #ff4d4d;
+    background-color: #1a0000;
+
+    padding: 10px 15px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ff4d4d;
+    border-radius: 6px;
+
+    font-size: 1rem;
+    text-align: center;
+
+    width: 25rem;
+}

@@ -1,0 +1,147 @@
+.homepage {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    color: white;
+}
+
+/* HEADER */
+.home-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.home-header h1 {
+    font-size: 2.8rem;
+    color: #44B78B;
+}
+
+.tagline {
+    color: #aaa;
+    margin-top: 4px;
+}
+
+/* LOGOUT */
+.logout-btn {
+    padding: 8px 16px;
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+/* WELCOME */
+.welcome-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.userid {
+    color: #888;
+}
+
+/* TEAMS */
+.teams-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.create-btn {
+    padding: 6px 14px;
+    background: #44B78B;
+    color: black;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* GRID */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+/* TEAM CARD */
+.team-card {
+    width: 100%;
+    padding: 18px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.team-card:hover {
+    border-color: #44B78B;
+    transform: translateY(-2px);
+}
+
+/* LOGGED OUT */
+.logged-out {
+    text-align: center;
+}
+
+.auth-buttons {
+    margin-top: 20px;
+}
+
+.primary {
+    padding: 12px 20px;
+    background: #44B78B;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.secondary {
+    padding: 12px 20px;
+    background: #222;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: white;
+}
+.team-wrapper {
+    position: relative;
+}
+
+/* Delete button */
+.delete-team-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    background: #8b0000;
+    border: none;
+    color: white;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+/* Show on hover */
+.team-wrapper:hover .delete-team-btn {
+    opacity: 1;
+}
+
+/* Hover effect */
+.delete-team-btn:hover {
+    background: #c62828;
+}

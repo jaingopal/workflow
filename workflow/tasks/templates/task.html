@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Task Details
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static "css/task.css" %}">
+{% endblock %}
+
+{% block content %}
+
+     <div class="navbar">
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button class ="back-button" type = "submit" name = "nav" value = "back">
+                ⬅ Back
+            </button>
+        </form>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class = "logout-button" type="submit" name = "nav" value ="logout">
+                Logout
+            </button>
+        </form>
+
+    </div>
+
+    <div class="task-container">
+
+        <h1 class="task-title">{{task.title}}</h1>
+
+        <p class="task-desc">
+            {{task.description}}
+        </p>
+
+        <div class="task-section">
+            <label>Importance</label>
+            <span class="tag importance {{task.importance}}">{{task.get_importance_display}}</span>
+        </div>
+
+        <div class="task-section">
+            <label>Deadline</label>
+            <span class="tag deadline">{{task.deadline}}</span>
+            <form method = "POST">
+                {% csrf_token %}
+                <input type="date" class="edit-input" name = "deadline" required>
+                <button class="edit-btn" >Update Deadline</button>
+            </form>
+        </div>
+
+        <div class="task-section">
+            <label>Progress</label>
+            <span class="tag status {{task.progress}}">{{task.get_progress_display}}</span>
+            <form method = "POST">
+                {% csrf_token %}
+                <select name = "importance" class="edit-input" required>
+                    <option value = "TODO">Todo</option>
+                    <option value = "IN_PROGRESS">In Progress</option>
+                    <option value = "DONE">Done</option>
+                </select>
+                <button class="edit-btn">Update Progress</button>
+            </form>
+        </div>
+
+        <div class="task-section">
+            <label>Assigned To</label>
+            {% if task.assigned %}
+                <span class="assigned-user">{{task.assigned.name}}</span>
+            {% else %}
+                <span class="not-assigned-user">No user is assigned yet</span>
+            {% endif %}
+
+            <div class="member-actions">
+                {% if task.assigned %}
+                    <form method="POST" class="change-form">
+
+                        {% if error %}
+                            <div class="error-box">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+
+                        <input 
+                            type="text"
+                            name="new_member"
+                            placeholder="Enter new member username"
+                            class="edit-input"
+                            required
+                        >
+
+                        <button 
+                            name="action" 
+                            value="change_member"
+                            class="change"
+                        >
+                            Change Member
+                        </button>
+
+                    </form>
+
+                    <form method = "POST">
+                        {% csrf_token %}
+                        <button name = "action" value = "remove_member" class="remove-member">Remove Member</button>
+                    </form>
+                {% else %}
+                    <form method="POST" class="assign-form">
+
+                        {% if error %}
+                            <div class="error-box">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+
+                        <input 
+                            type="text" 
+                            name="member_name" 
+                            placeholder="Enter member username"
+                            class="edit-input"
+                            required
+                        >
+
+                        <button 
+                            class="assign" 
+                            name="action" 
+                            value="assign_member"
+                        >
+                            Assign Member
+                        </button>
+
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button name = "action" value = "delete" class="delete">Delete Task</button>
+        </form>
+
+    </div>
+{% endblock %}

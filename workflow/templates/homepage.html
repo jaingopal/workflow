@@ -11,54 +11,94 @@
 {% endblock %}
 
 {% block content %}
-    {% if userid %}
-        <h1>TeamFlow</h1>
-        <h3>Manage your teams. Track your work.</h3>
 
-        <hr>
+<div class="homepage">
 
-        <h2>Welcome back, User</h2>
-        <p><strong>User ID:</strong> {{userid}}</p>
+{% if userid %}
 
-        <h3>Your Teams</h3>
-
+    <!-- HEADER -->
+    <div class="home-header">
         <div>
-            
-            {% for team in teams %}
-            <form method = "POST">
-                {% csrf_token %}
-                <button type = "submit" name = "team_id" value = {{team.team_id}} class = "team_name" >{{team.team_name}}</button>
-            </form>    
-            {% endfor %}
+            <h1>TeamFlow</h1>
+            <p class="tagline">Manage your teams. Track your work.</p>
         </div>
 
-        <hr>
-
-        <a href = '/team/register'>
-            <button>Create New Team</button>
-        </a>
-
-        <form method = "POST">
+        <form method="POST">
             {% csrf_token %}
-            <button type = "submit">Logout</button>
+            <button class="logout-btn">Logout</button>
         </form>
+    </div>
 
-    {% else %}
-        <h1>TeamFlow</h1>
-        <h3>Manage your teams. Track your work.</h3>
+    <!-- WELCOME -->
+    <div class="welcome-card">
+        <h2>Welcome back</h2>
+        <span class="userid">@{{userid}}</span>
+    </div>
 
-        <hr>
+    <!-- TEAMS -->
+    <div class="teams-section">
 
-        <h2>You are currently logged out</h2>
-
-        <div>
-            <a href = "/login">
-                <button>Login</button>
-            </a>
-            <a href="/register">
-                <button>Register</button>
-            </a>
+        <div class="teams-header">
+            <h3>Your Teams</h3>
+            <a href="/team/register" class="create-btn">+ New Team</a>
         </div>
 
-    {% endif %}
+        <div class="teams-grid">
+
+            {% for team in teams %}
+            <div class="team-wrapper">
+
+                <!-- OPEN TEAM -->
+                <form method="POST" class="team-open">
+                    {% csrf_token %}
+                    <button 
+                        type="submit"
+                        name="team_id"
+                        value="{{team.team_id}}"
+                        class="team-card"
+                    >
+                        {{team.team_name}}
+                    </button>
+                </form>
+
+                <!-- DELETE TEAM -->
+                <form method="POST" class="team-delete">
+                    {% csrf_token %}
+                    <button 
+                        type="submit"
+                        name="delete_team"
+                        value="{{team.team_id}}"
+                        class="delete-team-btn"
+                    >
+                        ✕
+                    </button>
+                </form>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% else %}
+
+    <!-- LOGGED OUT -->
+    <div class="logged-out">
+
+        <h1>TeamFlow</h1>
+        <p class="tagline">Manage your teams. Track your work.</p>
+
+        <h2>You are logged out</h2>
+
+        <div class="auth-buttons">
+            <a href="/login"><button class="primary">Login</button></a>
+            <a href="/register"><button class="secondary">Register</button></a>
+        </div>
+
+    </div>
+
+{% endif %}
+
+</div>
+
 {% endblock %}

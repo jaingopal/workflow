@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class Team(models.Model):
     team_leader = models.ForeignKey("users.User",on_delete=models.CASCADE)
     team_members= models.ManyToManyField("users.User",related_name="teams")
-    team_id = models.SlugField(unique=True)
+    team_id = models.SlugField(primary_key=True)
     team_name = models.CharField(max_length=75, default="")
     
     def __str__ (self):
@@ -21,5 +21,4 @@ class Team(models.Model):
         
         except ValidationError:
             return False
-        
         

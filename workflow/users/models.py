@@ -5,7 +5,7 @@ from django.core.exceptions import ValidationError
 # Create your models here.
 class User(models.Model):
     name = models.CharField()
-    userid = models.SlugField(unique=True)
+    userid = models.SlugField(primary_key=True)
     password = models.CharField(max_length=128)
     
     def __str__(self):

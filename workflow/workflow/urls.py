@@ -26,8 +26,6 @@ urlpatterns = [
     path('login/',views.loginpage),
     path('register/',views.registerpage),
     path('team/',include('teams.urls'))
-    # path('register-team/',views.registerteam),
-    # path('add-team-members/'views.)
 ]
 
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

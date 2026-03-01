@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Add Task
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static "css/add_task.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button class ="back-button" type = "submit" name = "action" value = "back">
+                ⬅ Back
+            </button>
+        </form>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class = "logout-button" type="submit" name = "action" value ="logout">
+                Logout
+            </button>
+        </form>
+
+    </div>
+
+    <!-- FORM -->
+<div class="container">
+
+    <h2 class="add-task-title">Add New Task</h2>
+
+    {% if error %}
+        <h2 class="error">{{error}}</h2>
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <!-- TITLE -->
+        <label>Title</label>
+        <input type="text" name="title" required>
+
+        <!-- DESCRIPTION -->
+        <label>Description</label>
+        <textarea name="description" rows="4" required></textarea>
+
+        <!-- ASSIGNED -->
+        <label>Assigned To</label>
+        <input type="text" name="assigned">
+
+        <!-- IMPORTANCE -->
+        <label>Importance</label>
+        <select name="importance" required>
+            <option value="">Select</option>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+        </select>
+
+        <!-- DEADLINE -->
+        <label>Deadline</label>
+        <input type="date" name="deadline" required>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="submit-btn">
+            Create Task
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from users.models import User
 from .models import Team
-
+from tasks.models import Task
 
 def add_members(request):
     if(not(request.session.get('user'))):
@@ -19,9 +19,6 @@ def add_members(request):
         team.team_leader=User.objects.get(userid = leader)
         team.team_id=teamid
         team.team_name = name
-        del request.session['count']
-        del request.session['teamid']
-        del request.session['name']
         
         for i in range(1,count):
             member_id= request.POST.get(f'member{i}')
@@ -32,12 +29,15 @@ def add_members(request):
                 
             except User.DoesNotExist:
                 return render(request,"add-team-members.html",{"error":f"UserId of Member {i} is wrong","leader":leader,"count":range(1,count)})
-            
         team.save()
         team.team_members.add(User.objects.get(userid=leader))
         for i in range(1,count):
             member_id=request.POST.get(f'member{i}')
             team.team_members.add(User.objects.get(userid=member_id))
+        
+        del request.session['count']
+        del request.session['teamid']
+        del request.session['name']
             
         return redirect('/')
     
@@ -74,3 +74,107 @@ def register(request):
             return render(request,"register-team.html",{"error":"Wrong UserName or Leader not registered"})
            
     return render(request,"register-team.html")
+
+
+def teampage(request):
+    if(request.method == "POST"):
+        if(request.POST.get("action")):
+            if(request.POST["action"]=="add_task"):
+                return redirect('teams:add_task')
+            
+            if(request.POST["action"]=="add_member"):
+                return redirect('teams:add_member')
+                
+            if(request.POST["action"]=="back"):
+                del request.session["team"]
+                return redirect('/')
+            del request.session["team"]
+            del request.session["user"]
+            return redirect('/')
+        if(request.POST.get("task")):
+            request.session["task"]=request.POST.get("task")
+            return redirect('teams:tasks:home')
+        if(request.POST.get('member')):
+            userid = request.POST['member']
+            teamid = request.session['team']
+            team = Team.objects.get(team_id = teamid)
+            team.team_members.remove(User.objects.get(userid=userid))
+            team.save()
+            return render(request,'team_page.html',{"team":team})
+            
+    if(request.session.get("team") and request.session.get("user")):
+        try :
+            team = Team.objects.get(team_id = request.session.get("team"))
+            return render(request,"team_page.html",{"team":team})
+        except Team.DoesNotExist:
+            del request.session["team"]
+            return redirect('/')
+            
+    else:
+        return redirect ('/')
+    
+def add_task(request):
+    
+    if(request.method == "POST"):
+        
+        if(request.POST.get("action")):
+            
+            if(request.POST["action"]=="back"):
+                return redirect('teams:teampage')
+            
+            del request.session["team"]
+            del request.session["user"]
+            return redirect('/')
+        
+        task = Task()
+        task.title = request.POST.get("title")
+        task.description=request.POST.get("description")
+        if(request.POST.get("assigned")):
+            try :
+                user = User.objects.get(userid=request.POST.get("assigned"))
+                task.assigned=user
+            except User.DoesNotExist:
+                return render(request,'add_task.html',{'error':"Wrong User ID"})
+                
+        if(request.POST.get("importance")!=""):
+            task.importance=request.POST.get("importance")
+        task.deadline=request.POST.get("deadline")
+        task.team = Team.objects.get(team_id = request.session.get("team"))
+        task.save()
+        return redirect('teams:teampage')
+    
+    if(request.session.get("team") and request.session.get("user")):
+        return render(request,'add_task.html')
+    else:
+        return redirect('/')
+    
+
+def add_member(request):
+    if(request.method == "POST"):
+        
+        if(request.POST.get("action")):
+            
+            if(request.POST["action"]=="back"):
+                return redirect('teams:teampage')
+            
+            del request.session["team"]
+            del request.session["user"]
+            return redirect('/')
+        
+        userid = request.POST.get('user_id')
+        team = request.session.get("team")
+        try :
+            user = User.objects.get(userid=userid)
+            if Team.objects.get(team_id = team).team_members.filter(userid=user.userid).exists():
+                return render(request,'add_member.html',{'error':f'{user.name} is already a Member'})
+            Team.objects.get(team_id = team).team_members.add(user)
+            
+        except User.DoesNotExist:
+            return render(request,'add_member.html',{'error':"Wrong User ID"})
+        
+        return redirect('teams:teampage')
+    
+    if(request.session.get("team") and request.session.get("user")):
+        return render(request,'add_member.html')
+    else:
+        return redirect('/')

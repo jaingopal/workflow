@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Add Member
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static "css/add_member.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button class ="back-button" type = "submit" name = "action" value = "back">
+                ⬅ Back
+            </button>
+        </form>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class = "logout-button" type="submit" name = "action" value ="logout">
+                Logout
+            </button>
+        </form>
+
+    </div>
+
+    <!-- FORM -->
+<div class="container">
+
+    <h2 class="add-member-title">Add New Member</h2>
+
+    {% if error %}
+        <h2 class="error">{{error}}</h2>
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <!-- USER ID -->
+        <label>User ID</label>
+        <input type="text" name="user_id" required>
+
+        <!-- SUBMIT -->
+        <button type="submit" class="submit-btn">
+            Add Member
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

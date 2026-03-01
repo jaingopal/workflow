@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    {{team.team_name}}
+{% endblock %}
+
+{% block styling %}
+    <link rel="stylesheet" href="{% static "css/team_page.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+
+        <form method = "POST">
+            {% csrf_token %}
+            <button class ="back-button" type = "submit" name = "action" value = "back">
+                ⬅ Back
+            </button>
+        </form>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button class = "logout-button" type="submit" name = "action" value ="logout">
+                Logout
+            </button>
+        </form>
+
+    </div>
+
+    <!-- TASK LIST -->
+    <div class="container">
+        <h2>Team Tasks</h2>
+
+        {% for task in team.tasks.all %}
+            <div class="task-card">
+
+                <div class="task-info">
+                    <strong>{{task.title}}</strong><br>
+                    Assigned to: {{task.assigned.name}}
+                </div>
+
+                <div class="task-meta">
+                    <span class="importance {{task.importance}}">{{task.get_importance_display}}</span>
+                    <span class="deadline">Due: {{task.deadline}}</span>
+                    <span class="status {{task.progress}}">{{task.get_progress_display}}</span>
+                </div>
+
+                <form class="task-form" method = "POST">
+                    {% csrf_token %}
+                    <button type="submit" name = "task" value = {{task.task_id}}>
+                        Open
+                    </button>
+                </form>
+
+            </div>
+        {% endfor %}
+        <div class="add-task">
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" name = "action" value = "add_task">
+                    + Add New Task
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MEMBERS LIST -->
+<div class="members-container">
+
+    <h2>Team Members</h2>
+
+    {% for member in team.team_members.all %}
+        <div class="member-card">
+            <div class="member-name">
+                {{member.name}}
+            </div>
+            <div class="member-id">
+                @{{member.userid}}
+            </div>
+            <!-- REMOVE MEMBER -->
+            <form method="POST" class="remove-member-form">
+                {% csrf_token %}
+                <button 
+                    type="submit"
+                    name="member"
+                    value="{{member.userid}}"
+                    class="remove-member-btn"
+                >
+                    Remove
+                </button>
+            </form>
+        </div>
+    {% endfor %}
+
+    <!-- ADD MEMBER BUTTON -->
+    <div class="add-member">
+        <form method ="POST">
+            {% csrf_token %}
+            <button type="submit" name = "action" value = "add_member">
+                + Add Member
+            </button>
+        </form>
+    </div>
+
+</div>
+
+    
+{% endblock %}

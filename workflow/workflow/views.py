@@ -1,5 +1,6 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect
 from users.models import User
+from teams.models import Team
 
 
 
@@ -39,7 +40,6 @@ def loginpage(request):
         password = request.POST.get("password")
         try : 
             user = User.objects.get(userid=userid)
-            print ("password is ",password)
             if (user.check_password(password)):
                 request.session["user"] = user.userid
                 return redirect('/')
@@ -54,8 +54,20 @@ def loginpage(request):
 
 def homepage(request):
     if(request.method == "POST"):
+        if(request.POST.get('delete_team')):
+            teamid = request.POST.get('delete_team')
+            try : 
+                team = Team.objects.get(team_id = teamid)
+                team.delete()
+                userid= request.session["user"]
+                user = User.objects.get(userid=userid)
+                teams = user.teams.all()
+                return render(request,'homepage.html',{"userid":userid,'teams':teams})
+            except Team.DoesNotExist:
+                return redirect('/')
         if(request.POST.get('team_id')):
-            return HttpResponse(f"Test Page for {request.POST.get('team_id')}")
+            request.session["team"]=request.POST.get('team_id')
+            return redirect('teams:teampage')
         del request.session["user"]
         return redirect('/')
     if(request.session.get("user")):

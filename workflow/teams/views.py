@@ -98,8 +98,9 @@ def teampage(request):
             userid = request.POST['member']
             teamid = request.session['team']
             team = Team.objects.get(team_id = teamid)
-            team.team_members.remove(User.objects.get(userid=userid))
-            team.save()
+            user = User.objects.get(userid = userid)
+            team.team_members.remove(user)
+            team.tasks.filter(assigned=user).update(assigned=None)
             return render(request,'team_page.html',{"team":team})
             
     if(request.session.get("team") and request.session.get("user")):
